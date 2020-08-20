@@ -23,7 +23,7 @@ pbr=['003480', '006200', '005010', '002300', '000140', '002220', '000950',
 
 
 
-# csv파일 읽기 근데 너무 귀찮음...
+# csv파일을 일일히 읽어옴. 자동화 방안 마련 필요.
 netincome=pd.read_csv("/Users/hwangsujeong/FBA/새 폴더/adjusted_csv/netincome.csv",
                encoding="UTF-8") #당기순이익
 
@@ -52,19 +52,19 @@ non_debt=pd.read_csv("/Users/hwangsujeong/FBA/새 폴더/adjusted_cs
                 encoding="UTF-8") # 비유동자산
 
 
-# 각 지표들의 이름을 일단 언제쓸지 모르니까...
+# 각 지표들의 이름을 담은 리스트 : 쉽게 참조하기 위해서 
 indices=["netincome","gross","cfo","lq_debt", "lq_asset", "equiss", "eq_cap", 
-        "asset", "non_debt"]
+        "asset", "non_debt"] # 지표 이름
 
 indices2=[netincome,gross,cfo,lq_debt,lq_asset,equiss,eq_cap, 
-        asset, non_debt]
+        asset, non_debt] # 지표객체 자체를 넣은 리스트
 
 
 
 
 #--------------------------------------------------------------------
 
-# 자동화 실패
+# 자동화 실패 : 추후 
 
 def idx_adjust(k):
     
@@ -86,7 +86,7 @@ for i in range(indices2):
 #--------------------------------------------------------------
 
 
-# 노가다 하기.
+# 날코딩으로 각 인덱스를 바꾸는 작업. 데이터프레임으로 함수로 돌릴 수 있는 방법 모색 필요.
 netincome["Stock"]=netincome["Stock"].map('{:06d}'.format)
 netincome["Stock"]=netincome["Stock"].map(str)
 netincome.set_index("Stock", inplace=True)
@@ -150,17 +150,16 @@ eq_cap_100=pd.DataFrame(eq_cap,index=pbr)
 asset_100=pd.DataFrame(asset,index=pbr)
 
 
-# 자동화의 시도...
+'''# 자동화의 시도... >> 보완필요
 namelist=['df'+str(i) for i in range(len(indices))]
 
 for i in range(len(indices)):
     namelist= df+str(i) 
-    namelist[i]= pd.Dataframe(indices2[i], index=pbr)
+    namelist[i]= pd.Dataframe(indices2[i], index=pbr)'''
 
 #-------------------------------------------------
 
 # F-score 지표만들기
-# 또 문제: 여기서 가로로 가야되는데.... 홀리....
 # 모든 연산을 transepose 후 진행.
 
 roa=netincome_100.T/asset_100.T  #수익성 roa
@@ -220,5 +219,8 @@ margin.T.to_csv("/Users/hwangsujeong/FBA/새 폴더/f_score/margin.c
 
 #--------------------------------------------------------
 
-'''여기서 발생한 오류 -> null 값을 더 빨리 조정했어야하나...?
-생각보다 증발해버린 데이터가 너무 많다.
+'''
+모델 개발 보완점
+
+문제점-> null 값을 더 빨리 조정했어야하나...?
+생각보다 증발해버린 데이터가 많다. 데이터 정리 기준 재정리필요.'''
