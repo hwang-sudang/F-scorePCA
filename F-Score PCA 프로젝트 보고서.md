@@ -1,20 +1,23 @@
-# # < PCA를 이용한 F-Score 투자 기법의 설명력 검증 >
+# < PCA를 이용한 F-Score 투자 기법의 설명력 검증 >
 PCA 기법을 활용한 기존 F-score 투자전략 재해석
 
 2020 AIT 1 Project  김지은, 황수정
+보고서 본문 : https://www.notion.so/sudang2020fba/PCA-F-Score-e04e27ea47364b2bafdc5eec622b11ab
 
 
 ## Index
 
-1. **Purpose**
-2. **F-score definition**
-3. **About Data**
-4. **Preprocessing** 
-5. **PCA**
-6. **Results**
-7. **Summary & Discussions**
-    **References**
-    
+1. Purpose
+2. F-score definition
+3. About Data
+4. Preprocessing 
+5. PCA
+6. Results
+7. Summary & Discussions
+    References
+ 
+ 
+ 
 # 1. P**urpose**
 
 > *재무제표 데이터를 이용해 **F-score**에 해당하는 지표(9개)를 구하고 주성분 분석(PCA)을 통해 재무제표 내용을 대표하는 주성분이 존재하는지 찾는다.*
