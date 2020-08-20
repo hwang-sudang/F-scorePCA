@@ -2,8 +2,8 @@
 PCA 기법을 활용한 기존 F-score 투자전략 재해석
 
 ### 2020 AIT 1 Project 구성원
-- 황수정 
-- 김지은 
+- 황수정 : F-score 투자기법 분석 및 전처리, 모델링 기획
+- 김지은 : PCA 모델링 및 머신러닝 모델 개발
 
 
 
@@ -40,14 +40,14 @@ Joseph D. PIOTROSKI,  ⌜Value Investing: The Use of Historical Financial Statem
 
 2. **Data_adjusting.py**
 - 저PBR 100주의 F-score 9개 지표 연산**
+- F-score 기준에 따라 0,1 시그널 부여
 
-3. **저PBR 100주의 return 연산**
+3. **pcy_try_with.py**
+- PCA를 위한 데이터 정규화
+- PCA 모델 피팅
 
-4. **F-score 기준에 따라 0,1 시그널 부여**
-    
-5. **PCA를 위한 정규화**
 
-6. **PCA 실행**
+
 
 
 ### ✅전체적인 전처리 단계
