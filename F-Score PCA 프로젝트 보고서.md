@@ -1,8 +1,10 @@
 # # < PCA를 이용한 F-Score 투자 기법의 설명력 검증 >
 PCA 기법을 활용한 기존 F-score 투자전략 재해석
+
 2020 AIT 1 Project  김지은, 황수정
 
-# Index
+
+## Index
 
 1. **Purpose**
 2. **F-score definition**
@@ -41,13 +43,8 @@ F-score란 재무제표를 기반으로 기업의 수익성, 재무성과, 영�
 
 ### F-score에 포함되는 9가지 Factors
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/180a6b1e-06bc-4f34-bdfb-e64d2103873f/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/180a6b1e-06bc-4f34-bdfb-e64d2103873f/Untitled.png)
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/4b787e69-c7c0-4b7a-8ba8-183450bf4617/_2020-04-18__12.46.44.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/4b787e69-c7c0-4b7a-8ba8-183450bf4617/_2020-04-18__12.46.44.png)
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/d412f562-18d8-4193-9531-10fd8637c1e6/_2020-04-18__12.47.19.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/d412f562-18d8-4193-9531-10fd8637c1e6/_2020-04-18__12.47.19.png)
-
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/e764e174-004d-4cb6-8cfd-c8a0bf73e728/_2020-04-18__12.48.20.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/e764e174-004d-4cb6-8cfd-c8a0bf73e728/_2020-04-18__12.48.20.png)
 
 - 위의 표에서 개별 지표의 **조건을 만족**하면 **F-score값이 1점 증가**한다.
 - Piotroski는 **저PBR 종목의 수익률을 증대시키기 위해** F-score를 적용했다.
@@ -73,13 +70,7 @@ F-score란 재무제표를 기반으로 기업의 수익성, 재무성과, 영�
 ## ✅전체적인 전처리 단계
 
 1. **저PBR (고 Book-to-Market) 상위 100 주 선정**
-
-    [low_PBR_30.py](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/301074ff-b4b6-4fe5-88d2-dd7980bb0394/low_PBR_30.py)
-
 2. **저PBR 100주의 F-score 9개 지표 연산**
-
-    [data_adjusting.py](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/30b7ec13-ba65-4c6a-9b3f-8b39317cddfb/data_adjusting.py)
-
 3. **저PBR 100주의 return 연산**
 4. **F-score 기준에 따라 0,1 시그널 부여**
     - Long only, Long Short
@@ -96,8 +87,6 @@ F-score란 재무제표를 기반으로 기업의 수익성, 재무성과, 영�
 
 1. 100개 데이터 추출 (정렬해서 낮은 기업 기준으로) 
 2. 우선 기업 정보에 해당되는 번호와 년도를 index로 설정(multi index) 
-
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/d77b1ce5-28f3-453a-b4e8-05e3c99af1c2/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/d77b1ce5-28f3-453a-b4e8-05e3c99af1c2/Untitled.png)
 
 ```python
 #인덱싱
@@ -171,8 +160,6 @@ margin=gross_100.T-gross_100.T.shift(1)
 #매출액이랑 return 따로 구하기 ㅠㅠ
 ```
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/a623f4fc-e992-4c56-8e3b-1d210e5e7b91/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/a623f4fc-e992-4c56-8e3b-1d210e5e7b91/Untitled.png)
-
 - **기준에 따라 1,0 으로 점수 부여 ⇒ 총 합으로 "F-score" 도출.**
 
 ```python
@@ -186,9 +173,6 @@ df_tf["d_Liquid"]=(df1["d_Liquid"]>0)*1 # d_Liquid
 df_tf["Margin"]=(df1["Margin"]>0)*1 # Margin
 df_tf["Turn"]=(df1["Turn"]>0)*1 # Turn
 ```
-
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/9c10f0af-5dff-4d8a-a996-a46bf57f35b9/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/9c10f0af-5dff-4d8a-a996-a46bf57f35b9/Untitled.png)
-
 ### ✔️F-score 로 Long Only, Long Short Signaling
 
 ![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/9ec43578-37c9-4b64-8b01-77bb0dbd4e0e/_2020-04-18__1.56.40.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/9ec43578-37c9-4b64-8b01-77bb0dbd4e0e/_2020-04-18__1.56.40.png)
